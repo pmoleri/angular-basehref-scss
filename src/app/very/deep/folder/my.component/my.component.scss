@@ -1,0 +1,32 @@
+.img {
+  width: 200px;
+  height: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.relative-to-file {
+  // ✔ in @angular-devkit/build-angular:application
+  // ✔ in @angular-devkit/build-angular:karma
+  // it's very inconvenient
+  background-image: url('../../../../../assets/lockup_angular.svg');
+}
+
+.relative-to-project {
+  // ❌ @angular-devkit/build-angular:application -> Could not resolve "src/assets/lockup_angular.svg" [plugin angular-css-resource]
+  // ❌ @angular-devkit/build-angular:karma -> Can't resolve './src/assets/lockup_angular.svg' [postcss-loader]
+  // Could not resolve "src/assets/lockup_angular.svg"
+  // background-image: url('src/assets/lockup_angular.svg');
+}
+
+.tilde {
+  // ❌ @angular-devkit/build-angular:application -> Could not resolve "~src/assets/lockup_angular.svg" [plugin angular-css-resource]
+  // ✔ @angular-devkit/build-angular:karma
+  background-image: url('~src/assets/lockup_angular.svg');
+}
+
+.external {
+  // ✔ @angular-devkit/build-angular:application w/ "externalDependencies": ["assets/*"]
+  // ❌ @angular-devkit/build-angular:karma -> Can't resolve './assets/lockup_angular.svg' [postcss-loader]
+  background-image: url('assets/lockup_angular.svg');
+}
